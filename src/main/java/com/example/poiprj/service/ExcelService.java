@@ -8,13 +8,15 @@ import com.example.poiprj.repository.LibrarysRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
@@ -105,9 +107,7 @@ public class ExcelService {
             Cell cell7 = row.getCell(11);
             Cell cell8 = row.getCell(12);
 
-            if(cell4==null) {
-                continue;
-            }
+//            if (cell1 == null) continue;
 
             //SET AS STRING TYPE
             cell1.setCellType(Cell.CELL_TYPE_STRING);
@@ -143,6 +143,11 @@ public class ExcelService {
             // ISBN X 제거
             if (data5.endsWith("X")) {
                 data5 = data5.substring(0, data5.length()-1);
+            }
+
+            // ISBN (1 제거
+            if (data5.endsWith("(1")) {
+                data5 = data5.substring(0, data5.length()-2);
             }
 
             // 이상한 셀 확인 (ex. c2014)
@@ -184,6 +189,7 @@ public class ExcelService {
 
             booksList.add(books);
         }
+
         booksRepository.saveAll(booksList);
 
     }
