@@ -9,11 +9,18 @@
 <body>
 <form th:action="@{/excel/read}" method="POST" enctype="multipart/form-data">
     <input type="file" th:name="file">
-    <input th:type="submit" value="제출" />
+    <input th:type="submit" value="브라우저에 출력해보기" />
+</form>
+<form th:action="@{/excel/read/uploadlibrary}" method="POST" enctype="multipart/form-data">
+    <input type="file" th:name="file">
+    <input th:type="submit" value="DB에 올리기" />
+    여기에 올리고 싶은 도서관정보 엑셀 파일 넣어요
 </form>
 <form th:action="@{/excel/read/upload}" method="POST" enctype="multipart/form-data">
     <input type="file" th:name="file">
+    <input type="text" th:name="libcode">
     <input th:type="submit" value="DB에 올리기" />
+    여기에 올리고 싶은 도서정보 엑셀 파일과 도서관 코드 넣어요
 </form>
 </body>
 

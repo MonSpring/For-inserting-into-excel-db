@@ -1,6 +1,7 @@
 package com.example.poiprj.service;
 
 import com.example.poiprj.domain.Books;
+import com.example.poiprj.dto.ResponseDto;
 import com.example.poiprj.dto.req.BooksReqDto;
 import com.example.poiprj.dto.res.BooksResDto;
 import com.example.poiprj.repository.BooksRepository;
@@ -31,13 +32,11 @@ public class BooksService {
 
             Books books = Books.builder()
                     .isbn13(booksReqDto.getIsbn13())
-                    .bookImageURL(booksReqDto.getBookImageURL())
                     .reg_date(booksReqDto.getReg_date())
                     .publisher(booksReqDto.getPublisher())
                     .publication_year(booksReqDto.getPublication_year())
-                    .bookname(booksReqDto.getBookname())
+                    .title(booksReqDto.getTitle())
                     .author(booksReqDto.getAuthor())
-                    .addition_symbol(booksReqDto.getAddition_symbol())
                     .build();
 
         return ResponseDto.success("책 등록 완료");
