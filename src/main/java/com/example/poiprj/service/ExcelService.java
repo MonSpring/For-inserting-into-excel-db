@@ -135,6 +135,16 @@ public class ExcelService {
                 continue;
             }
 
+            // ISBN 앞 공백 제거
+            if (data5.startsWith(" ")) {
+                data5 = data5.substring(1);
+            }
+
+            // ISBN X 제거
+            if (data5.endsWith("X")) {
+                data5 = data5.substring(0, data5.length()-1);
+            }
+
             // 이상한 셀 확인 (ex. c2014)
             if (data4.startsWith("c")) {
                 data4 = data4.substring(1);
