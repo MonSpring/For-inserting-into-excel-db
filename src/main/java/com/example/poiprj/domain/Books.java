@@ -3,7 +3,7 @@ package com.example.poiprj.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Library;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.cfg.AvailableSettings;
@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class Books {
 
     @Id
@@ -48,7 +48,7 @@ public class Books {
     private Long isbn13;
 
     @Column
-    private int book_count;
+    private String book_count;
 
     @Column
     private int lend_out_book_count;
@@ -56,15 +56,15 @@ public class Books {
     @Column
     private Date reg_date;
 
-//    @JoinColumn("lib_code")
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    Librarys librarys;
+    @JoinColumn(name = "libcode")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Librarys librarys;
 
     @Builder
     public Books(Long book_id, String title, String author, String publisher,
-                 Date publication_year, Long isbn13, int book_count, int lend_out_book_count,
-                 Date reg_date) {
-//        , Librarys librarys
+                 Date publication_year, Long isbn13, String book_count, int lend_out_book_count,
+                 Date reg_date, Librarys librarys) {
+
         this.book_id = book_id;
         this.title = title;
         this.author = author;
@@ -74,6 +74,6 @@ public class Books {
         this.book_count = book_count;
         this.lend_out_book_count = lend_out_book_count;
         this.reg_date = reg_date;
-//        this.librarys = librarys;
+        this.librarys = librarys;
     }
 }
