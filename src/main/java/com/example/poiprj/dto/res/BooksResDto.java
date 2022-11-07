@@ -13,35 +13,22 @@ public class BooksResDto {
 
     private Long isbn13;
 
-    @Column
-    private String bookname;
+    private String title;
 
-    @Column
     private String author;
 
-    @Column
     private String publisher;
 
-    @Column
-    private String publication_year;
+    private Date publication_year;
 
-    @Column
-    private int addition_symbol;
-
-    @Column
     private Date reg_date;
-
-    @Column
-    private String bookImageURL;
 
     public void update (Books books) {
         this.isbn13 = books.getIsbn13();
-        this.bookname = books.getBookname();
+        this.title = books.getTitle();
         this.author = books.getAuthor();
         this.publisher = books.getPublisher();
         this.publication_year = books.getPublication_year();
-        this.addition_symbol = books.getAddition_symbol();
         this.reg_date = books.getReg_date();
-        this.bookImageURL = books.getBookImageURL();
     }
 }

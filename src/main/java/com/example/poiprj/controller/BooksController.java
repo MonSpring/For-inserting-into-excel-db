@@ -3,7 +3,7 @@ package com.example.poiprj.controller;
 import com.example.poiprj.dto.req.BooksReqDto;
 import com.example.poiprj.dto.res.BooksResDto;
 import com.example.poiprj.service.BooksService;
-import com.example.poiprj.service.ResponseDto;
+import com.example.poiprj.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
