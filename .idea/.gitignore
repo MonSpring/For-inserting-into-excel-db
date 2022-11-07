@@ -1,0 +1,19 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Zeppelin ignored files
+/ZeppelinRemoteNotebooks/
+
+# application properties (Because DB info, Token info, AWS info include)
+../src/main/resources/application.properties
+
+# build file
+../.gradle
+
+# setting file
+../.idea
