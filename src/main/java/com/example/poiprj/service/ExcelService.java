@@ -8,8 +8,10 @@ import com.example.poiprj.repository.LibrarysRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -102,6 +104,10 @@ public class ExcelService {
             Cell cell6 = row.getCell(10);
             Cell cell7 = row.getCell(11);
             Cell cell8 = row.getCell(12);
+
+            if(cell4==null) {
+                continue;
+            }
 
             //SET AS STRING TYPE
             cell1.setCellType(Cell.CELL_TYPE_STRING);
