@@ -107,8 +107,6 @@ public class ExcelService {
             Cell cell7 = row.getCell(11);
             Cell cell8 = row.getCell(12);
 
-//            if (cell1 == null) continue;
-
             //SET AS STRING TYPE
             cell1.setCellType(Cell.CELL_TYPE_STRING);
             cell2.setCellType(Cell.CELL_TYPE_STRING);
@@ -129,11 +127,17 @@ public class ExcelService {
             String data7= cell7.getStringCellValue();
             String data8= cell8.getStringCellValue();
 
+            // NULL 에러 체크
+            if (data3.equals(""))
+                data3 = "NULL";
+
             // 빈셀 확인
             if (data4.equals("")) {
                 // 날짜가 빈셀이면 i++ 하고 돌아가
                 continue;
             }
+
+
 
             // ISBN 앞 공백 제거
             if (data5.startsWith(" ")) {
@@ -147,6 +151,11 @@ public class ExcelService {
 
             // ISBN (1 제거
             if (data5.endsWith("(1")) {
+                data5 = data5.substring(0, data5.length()-2);
+            }
+
+            // ISBN (3 제거
+            if (data5.endsWith("(3")) {
                 data5 = data5.substring(0, data5.length()-2);
             }
 
