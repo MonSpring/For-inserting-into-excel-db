@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 @Slf4j
 @Service
@@ -92,37 +93,72 @@ public class ExcelService {
 
             Row row = worksheet.getRow(i);
 
+            //GET CELL
+            Cell cell1 = row.getCell(1);
+            Cell cell2 = row.getCell(2);
+            Cell cell3 = row.getCell(3);
+            Cell cell4 = row.getCell(4);
+            Cell cell5 = row.getCell(5);
+            Cell cell6 = row.getCell(10);
+            Cell cell7 = row.getCell(11);
+            Cell cell8 = row.getCell(12);
+
+            //SET AS STRING TYPE
+            cell1.setCellType(Cell.CELL_TYPE_STRING);
+            cell2.setCellType(Cell.CELL_TYPE_STRING);
+            cell3.setCellType(Cell.CELL_TYPE_STRING);
+            cell4.setCellType(Cell.CELL_TYPE_STRING);
+            cell5.setCellType(Cell.CELL_TYPE_STRING);
+            cell6.setCellType(Cell.CELL_TYPE_STRING);
+            cell7.setCellType(Cell.CELL_TYPE_STRING);
+            cell8.setCellType(Cell.CELL_TYPE_STRING);
+
+            //Get As String TYPE
+            String data1= cell1.getStringCellValue();
+            String data2= cell2.getStringCellValue();
+            String data3= cell3.getStringCellValue();
+            String data4= cell4.getStringCellValue();
+            String data5= cell5.getStringCellValue();
+            String data6= cell6.getStringCellValue();
+            String data7= cell7.getStringCellValue();
+            String data8= cell8.getStringCellValue();
+
             // 빈셀 확인
-            if (Objects.equals(row.getCell(4).getStringCellValue(), "")) {
+            if (data4.equals("")) {
                 // 날짜가 빈셀이면 i++ 하고 돌아가
                 continue;
             }
 
-            String publication_year_temp = row.getCell(4).getStringCellValue();
+            // 이상한 셀 확인 (ex. c2014)
+            if (data4.startsWith("c")) {
+                data4 = data4.substring(1);
+            }
+
+            if (data4.contains("nyu")) {
+                data4 = "2000";
+            }
+
             SimpleDateFormat publication_year_formatter = new SimpleDateFormat("yyyy");
-            Date publication_year = publication_year_formatter.parse(publication_year_temp);
+            Date publication_year = publication_year_formatter.parse(data4);
 
-            String reg_date_temp = row.getCell(12).getStringCellValue();
             SimpleDateFormat regdate_formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date reg_date = regdate_formatter.parse(reg_date_temp);
-
+            Date reg_date = regdate_formatter.parse(data8);
 
             Books books = Books.builder()
                     .librarys(librarys)
-                    .title(row.getCell(1).getStringCellValue())
-                    .author(row.getCell(2).getStringCellValue())
-                    .publisher(row.getCell(3).getStringCellValue())
+                    .title(data1)
+                    .author(data2)
+                    .publisher(data3)
                     .publication_year(publication_year)
-                    .isbn13(Long.parseLong(row.getCell(5).getStringCellValue()))
-                    .book_count(row.getCell(10).getStringCellValue())
-                    .lend_out_book_count(Integer.parseInt(row.getCell(11).getStringCellValue()))
+                    .isbn13(Long.parseLong(data5))
+                    .book_count(data6)
+                    .lend_out_book_count(Integer.parseInt(data7))
                     .reg_date(reg_date)
                     .build();
 
             booksList.add(books);
         }
         booksRepository.saveAll(booksList);
-
     }
 
     public void updateDatabaseLib(MultipartFile file) throws IOException {
@@ -169,7 +205,6 @@ public class ExcelService {
         }
         librarysRepository.saveAll(librarysList);
     }
-
 }
 
 
