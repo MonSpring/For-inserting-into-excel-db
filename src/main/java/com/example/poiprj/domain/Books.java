@@ -3,6 +3,7 @@ package com.example.poiprj.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Library;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.cfg.AvailableSettings;
@@ -29,10 +30,10 @@ public class Books {
                     @Parameter(name = AvailableSettings.PREFERRED_POOLED_OPTIMIZER, value = "pooled-lo")
             }
     )
-    private Long isbn13;
+    private Long book_id;
 
     @Column
-    private String bookname;
+    private String title;
 
     @Column
     private String author;
@@ -41,26 +42,38 @@ public class Books {
     private String publisher;
 
     @Column
-    private String publication_year;
+    private Date publication_year;
 
     @Column
-    private int addition_symbol;
+    private Long isbn13;
+
+    @Column
+    private int book_count;
+
+    @Column
+    private int lend_out_book_count;
 
     @Column
     private Date reg_date;
 
-    @Column
-    private String bookImageURL;
+//    @JoinColumn("lib_code")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    Librarys librarys;
 
     @Builder
-    public Books(Long isbn13, String bookname, String author, String publisher, String publication_year, int addition_symbol, Date reg_date, String bookImageURL) {
-        this.isbn13 = isbn13;
-        this.bookname = bookname;
+    public Books(Long book_id, String title, String author, String publisher,
+                 Date publication_year, Long isbn13, int book_count, int lend_out_book_count,
+                 Date reg_date) {
+//        , Librarys librarys
+        this.book_id = book_id;
+        this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publication_year = publication_year;
-        this.addition_symbol = addition_symbol;
+        this.isbn13 = isbn13;
+        this.book_count = book_count;
+        this.lend_out_book_count = lend_out_book_count;
         this.reg_date = reg_date;
-        this.bookImageURL = bookImageURL;
+//        this.librarys = librarys;
     }
 }
