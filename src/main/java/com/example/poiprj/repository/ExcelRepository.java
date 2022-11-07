@@ -1,11 +1,8 @@
 package com.example.poiprj.repository;
 
-import com.example.poiprj.domain.Members;
+import com.example.poiprj.domain.Books;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
-public interface ExcelRepository extends JpaRepository<Members, Long> {
+public interface ExcelRepository extends JpaRepository<Books, Long> {
 
 }
