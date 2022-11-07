@@ -42,9 +42,9 @@ public class ExcelController {
                                          @RequestParam("libcode") long code)
             throws IOException, ParseException {
 
-        if (code == 0) {
-            throw new IOException("도서관 코드를 넣어주세요");
-        }
+//        if (code == 0) {
+//            throw new IOException("도서관 코드를 넣어주세요");
+//        }
 
         excelService.updateDatabase(file, code);
         return "upload";
