@@ -138,6 +138,16 @@ public class ExcelService {
                 data4 = "2000";
             }
 
+            if (data2.length() > 120) {
+                continue;
+            }
+
+            // 정규식
+            boolean myPattern = Pattern.matches("^[0-9]{4}$", data4);
+            if (!myPattern) {
+                continue;
+            }
+
             SimpleDateFormat publication_year_formatter = new SimpleDateFormat("yyyy");
             Date publication_year = publication_year_formatter.parse(data4);
 
@@ -159,6 +169,7 @@ public class ExcelService {
             booksList.add(books);
         }
         booksRepository.saveAll(booksList);
+
     }
 
     public void updateDatabaseLib(MultipartFile file) throws IOException {

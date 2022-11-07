@@ -36,7 +36,7 @@ public class ExcelController {
     }
 
     // 도서 정보 엑셀파일 업로드
-    @LogExecutionTime
+//    @LogExecutionTime
     @PostMapping("/excel/read/upload")
     public String readAndUploadExcelBook(@RequestParam("file") MultipartFile file,
                                          @RequestParam("libcode") long code)
@@ -51,7 +51,7 @@ public class ExcelController {
     }
 
     // 도서 정보 엑셀파일 업로드
-    @LogExecutionTime
+//    @LogExecutionTime
     @PostMapping("excel/read/uploadlibrary")
     public String readAndUploadExcelLib(@RequestParam("file") MultipartFile file) throws IOException {
         excelService.updateDatabaseLib(file);
