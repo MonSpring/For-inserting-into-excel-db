@@ -150,6 +150,10 @@ public class ExcelService {
                 data5 = data5.substring(0, data5.length()-2);
             }
 
+            if (data5.contains("*******")) {
+                data5 = data5.replace("*******", "0000000");
+            }
+
             // 이상한 셀 확인 (ex. c2014)
             if (data4.startsWith("c")) {
                 data4 = data4.substring(1);
