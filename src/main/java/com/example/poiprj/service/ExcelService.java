@@ -97,6 +97,24 @@ public class ExcelService {
 
             Row row = worksheet.getRow(i);
 
+            log.info("row get cell1 : " + row.getCell(1));
+            log.info("row get cell1 : " + row.getCell(2));
+            log.info("row get cell1 : " + row.getCell(3));
+            log.info("row get cell1 : " + row.getCell(4));
+            log.info("row get cell1 : " + row.getCell(5));
+            log.info("row get cell1 : " + row.getCell(10));
+            log.info("row get cell1 : " + row.getCell(11));
+            log.info("row get cell1 : " + row.getCell(12));
+
+//            title(data1)
+//            author(data2)
+//            publisher(data3)
+//            publication_year(publication_year)
+//            isbn13(Long.parseLong(data5))
+//            book_count(data6)
+//            lend_out_book_count(Integer.parseInt(data7))
+//            reg_date(reg_date)
+
             //GET CELL
             Cell cell1 = row.getCell(1);
             Cell cell2 = row.getCell(2);
@@ -129,6 +147,7 @@ public class ExcelService {
             String data7= cell7.getStringCellValue();
             String data8= cell8.getStringCellValue();
 
+
             // 빈셀 확인
             if (data4.equals("")) {
                 // 날짜가 빈셀이면 i++ 하고 돌아가
@@ -148,6 +167,22 @@ public class ExcelService {
             // ISBN (1 제거
             if (data5.endsWith("(1")) {
                 data5 = data5.substring(0, data5.length()-2);
+            }
+
+            if (data5.endsWith("(2")) {
+                data5 = data5.substring(0, data5.length()-2);
+            }
+
+            if (data5.endsWith("([")) {
+                data5 = data5.substring(0, data5.length()-2);
+            }
+
+            if (data5.endsWith("([")) {
+                data5 = data5.substring(0, data5.length()-2);
+            }
+
+            if (data5.contains("(전2권)")) {
+                data5 = data5.replace("(전2권)", "00000");
             }
 
             if (data5.contains("*******")) {
