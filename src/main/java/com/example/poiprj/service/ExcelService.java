@@ -147,7 +147,6 @@ public class ExcelService {
             String data7= cell7.getStringCellValue();
             String data8= cell8.getStringCellValue();
 
-
             // 빈셀 확인
             if (data4.equals("")) {
                 // 날짜가 빈셀이면 i++ 하고 돌아가
@@ -169,11 +168,12 @@ public class ExcelService {
                 data5 = data5.substring(0, data5.length()-2);
             }
 
-            if (data5.endsWith("(2")) {
+            // ISBN (3 제거
+            if (data5.endsWith("(3")) {
                 data5 = data5.substring(0, data5.length()-2);
             }
 
-            if (data5.endsWith("([")) {
+            if (data5.endsWith("(2")) {
                 data5 = data5.substring(0, data5.length()-2);
             }
 
